@@ -1,0 +1,58 @@
+
+gpg --full-generate-key
+
+Choose (1) RSA and RSA (default)
+
+Set key size to 4096 (for better security)
+
+Enter your GitHub email
+
+Set an expiration date (or choose "0" for no expiry)
+
+Set a passphrase (keep it safe!)
+
+After generating, list your keys:
+
+gpg --list-secret-keys --keyid-format=long
+
+Look for a line like this:
+
+sec   rsa4096/ABCDEFGH12345678 2025-02-20 [SC]
+Your GPG key ID is ABCDEFGH12345678 (copy it).
+
+3️⃣ Tell Git to Sign Commits
+git config --global user.signingkey ABCDEFGH12345678
+git config --global commit.gpgsign true
+
+4️⃣ Add GPG Key to GitHub
+Export your key:
+gpg --armor --export ABCDEFGH12345678
+
+Copy the output and add it to GitHub → Settings → SSH and GPG keys → New GPG Key.
+git commit -S -m "Signed commit"
+-------------------------------------------------------------------
+Delete the Secret (Private) Key
+Run:
+
+gpg --delete-secret-keys ABCDEFGH12345678
+It may ask for confirmation. Type y and press Enter.
+
+3️⃣ Delete the Public Key
+Run:
+
+gpg --delete-keys ABCDEFGH12345678
+Again, confirm with y.
+
+4️⃣ Remove from GitHub
+If you added the key to GitHub, go to:
+
+GitHub → Settings → SSH and GPG keys
+Find the key under "GPG keys"
+Click Delete
+
+5️⃣ Clear Cached GPG Data (Optional)
+To ensure no traces remain, run:
+
+rm -rf ~/.gnupg
+(⚠️ This will remove ALL your stored GPG keys! Only do this if you're sure.)
+
