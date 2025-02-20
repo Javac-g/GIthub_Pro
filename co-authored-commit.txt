@@ -1,0 +1,13 @@
+
+------------------------------------------------------------------------
+git add .  # Stage your changes
+git commit -m "Description of your changes
+
+Co-authored-by: username <useremail@pmail.ua>"  # Add co-authored info
+
+git push -u origin Max
+-------------------------------------------------------------
+Go to your repository on GitHub.
+Open the Pull Requests tab.
+Find a PR that contains your co-authored commit.
+If the PR isn’t merged yet, merge it.
